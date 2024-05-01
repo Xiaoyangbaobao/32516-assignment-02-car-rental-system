@@ -1,0 +1,499 @@
+	
+    // after before
+
+    
+$__full__width:100%;
+$__half__width:50%;
+$__full_height_window:100vh;
+$__full__height:100%;
+$__half__height:50%;
+$__left:left;
+$__right:right;
+$__center:center;
+$__block:block;
+$__inline__block:inline-block;
+$__inline:inline;
+$__table:table;
+$__flex:flex;
+$__webkit__flex:-webkit-flex;
+$__none:none;
+$__absolute:absolute;
+$__relative:relative;
+$__static:static;
+$__fixed:fixed;
+$__unset:unset;
+$__uppercase:uppercase;
+$__lowercase:lowercase;
+$__capitalize:capitalize;
+$__inherit:inherit;
+$__initial:initial;
+$__auto:auto;
+$__normal:normal;
+$__margin__auto:0 auto;
+$__null:null;
+$__bottom:bottom;
+$__middle:middle;
+$__top:top;
+$__transparent:transparent;
+$__no_repeat:no-repeat;
+$__cover:cover;
+$__pointer:pointer;
+$__not-allowed:not-allowed;
+$__hidden:hidden;
+$__show:show;
+$__visible:visible;
+$__both:both;
+$__ellipsis:ellipsis;
+$__nowrap:nowrap;
+$__inline__flex:inline-flex;
+$__underline:underline;
+
+// Custom Values
+
+$__grid__padding__left:15px;
+$__grid__padding__right:15px;
+$__container__width:1140px;
+
+
+// Grid Values
+
+$__col__1:8.33333333%;
+$__col__2:16.66666667%;
+$__col__3:25%;
+$__col__4:33.33333333%;
+$__col__5:41.66666667%;
+$__col__6:50%;
+$__col__7:58.33333333%;
+$__col__8:66.66666667%;
+$__col__9:75%;
+$__col__10:83.33333333%;
+$__col__11:91.66666667%;
+$__col__12:100%;
+
+
+    %theme-afbf{
+        position: absolute;
+        content: '';
+    }
+
+
+    // bg color
+    @mixin bg-color($color, $opacity) {
+        background: rgba($color, $opacity);
+    }
+    
+
+    // placeholder input
+    @mixin tp-placeholder {
+        &::-webkit-input-placeholder {
+            @content;
+        }
+        &:-moz-placeholder {
+            @content;
+        }
+        &::-moz-placeholder {
+            @content;
+        }
+        &:-ms-input-placeholder {
+            @content;
+        }
+    }
+
+    // animate 
+    @mixin animate($animation, $duration, $repeat, $easing) {
+        -webkit-animation: $animation $duration $repeat $easing;
+           -moz-animation: $animation $duration $repeat $easing;
+            -ms-animation: $animation $duration $repeat $easing;
+            -o-animation: $animation $duration $repeat $easing;
+                animation: $animation $duration $repeat $easing;
+    }
+
+    // filter 
+    @mixin filter($value) {
+        -webkit-filter: $value;
+            filter: $value;
+    }
+
+    // appearance for select
+    @mixin appearance($value) {
+        -webkit-appearance: $value;
+            -moz-appearance: $value;
+            -ms-appearance: $value;
+            -o-appearance: $value;
+            appearance: $value;
+    }
+    
+    // keyframes 
+    @mixin keyframes($name) {
+        @-webkit-keyframes #{$name} {
+            @content; 
+        }
+        @-moz-keyframes #{$name} {
+            @content;
+        }
+        @-ms-keyframes #{$name} {
+            @content;
+        }
+        @keyframes #{$name} {
+            @content;
+        } 
+    }
+
+    //backgroud 
+    @mixin background {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+      
+    //transition
+    @mixin transition($time) {
+        -webkit-transition: all $time ease-out 0s;
+        -moz-transition: all $time ease-out 0s;
+        -ms-transition: all $time ease-out 0s;
+        -o-transition: all $time ease-out 0s;
+        transition: all $time ease-out 0s;
+    }
+    
+    // transform
+    @mixin transform($transforms) {
+        -webkit-transform: $transforms;
+        -moz-transform: $transforms;
+        -ms-transform: $transforms;
+        -o-transform: $transforms;
+        transform: $transforms;
+    }
+    
+    //border
+    @mixin border-radius($man) {
+    -webkit-border-radius: $man;
+    -moz-border-radius: $man;
+    -o-border-radius: $man;
+    -ms-border-radius: $man;
+    border-radius: $man;
+    }
+    
+    // sentence case
+    @mixin sentence-case() {
+        text-transform: lowercase;
+        &:first-letter {
+            text-transform: uppercase;
+        }
+    }
+
+    // Flexbox display
+    @mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    }
+    
+    // Box shadows
+    @mixin box-shadow($shadow) {
+    -webkit-box-shadow: $shadow;
+        -moz-box-shadow: $shadow;       
+        -ms-box-shadow: $shadow;       
+        -o-box-shadow: $shadow;       
+            box-shadow: $shadow;
+    }
+    
+    $breakpoints: (
+  xs: 320px,
+  sm: 568px,
+  custom767: 767.98px,
+  md: 768px,
+  lg: 1024px,
+  custom320: 320px,
+  custom479: 479px,
+  custom575: 575.98px,
+  custom768: 768px,
+  custom849: 849px,
+  custom991: 991.98px,
+  custom992: 992px,
+  custom1299: 1299.98px,
+  custom1399: 1399.98px,
+  custom1199: 1199.98px,
+  custom1023: 1023px,
+  custom1024: 1024px,
+  custom1400: 1400px,
+  custom1440: 1440px,
+);
+
+// Respond above.
+@mixin respond-above($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+// Respond below.
+@mixin respond-below($breakpoint) {
+
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: $breakpoint-value) {
+      @content;
+    }
+
+  // If the breakpoint doesn't exist in the map.
+  } @else {
+
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+
+
+@mixin transform($property) {
+  transform: $property;
+  -webkit-transform: $property;
+  -ms-transform: $property;
+}
+
+// Define vertical, horizontal, or both position
+@mixin position-alignment($position) {
+  position: $__absolute;
+  
+  @if $position == 'vertical' {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  @else if $position == 'horizontal' {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translate(-50%);
+  }
+  @else if $position == 'both' {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@mixin transition($__property) {
+  -webkit-transition: $__property;
+  -ms-transition: $__property;
+  transition: $__property;
+}
+
+@mixin background-properties($__cover:cover,$__no-repeat:no-repeat,$__center:center){
+  background-size:$__cover;
+  background-repeat:$__no-repeat;
+  background-position:$__center;
+}
+
+@mixin position($__position_value,$__top_value,$__right_value,$__bottom_value,$__left_value){
+  position:$__position_value;
+  top:$__top_value;
+  right:$__right_value;
+  bottom:$__bottom_value;
+  left:$__left_value;
+}
+
+@mixin margin-padding($__margin, $__padding) {
+   margin: $__margin;
+   padding:$__padding;
+}
+
+@mixin placeholder-color($color) {
+  &::-webkit-input-placeholder { /* WebKit browsers */
+      color: $color;
+      opacity: 1;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+      color: $color;
+      opacity: 1;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: $color;
+      opacity: 1;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10+ */
+      color: $color;
+      opacity: 1;
+  }
+}
+
+%equal-heights {
+  display: flex;
+  display: -webkit-flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+}
+
+%ul_reset {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.css-equal-heights {
+	@extend %equal-heights;
+}
+
+.css-equal-content {
+    @extend %equal-heights;
+    color: red;
+    float: left;
+}
+.align-center {
+  @extend %flex-align-center;
+}
+%animation-effect {   
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+%justify-content-center {  
+  justify-content: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+}
+%align-items-center {  
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+}
+%justify-content-between {  
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+}
+%flex-align-center {
+  display: flex;
+  display: -webkit-flex;
+  align-items:center;
+  -webkit-align-items:center;
+  justify-content: center;
+  -webkit-justify-content: center;
+}
+%justify-content-spacebetween {
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: space-between;
+}
+%clear{
+  content:"";
+  display:table;
+  clear:both;
+}
+
+%ul_reset {
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+%full_width_height_div {
+  width:$__full__width;
+  height:$__full__height;
+}
+%inline-flex {  
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+%display-flex {  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+%display-flex-between {  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+}
+%display-flex-center-between {  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+}
+%display-flex-center {  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+}
+%jusflex-end {
+  justify-content: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
+}
+%jusflex-start {
+  justify-content: flex-start;
+  -webkit-justify-content: start;
+  -ms-flex-pack: start;
+}
+%justify-content-between {  
+  justify-content: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+}
+%flex-wrap {  
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+%flex-end {  
+  -webkit-box-align: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+}
+%flex-column {  
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+@mixin rounded($unit) {
+  border-radius: $unit;
+}
+@mixin transform-origin($property) {
+  transform-origin: $property;
+  -webkit-transform-origin: $property;
+  -ms-transform-origin: $property;
+}
+@mixin box-shadow($__inset:inset,$__horizontaloffset:10px,$__verticaloffset:10px,$blur:10px,$__spread:10px,$__color: #000000) {
+  -webkit-box-shadow: $__inset $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+  -moz-box-shadow: $__inset $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+  box-shadow: $__inset $__horizontaloffset $__verticaloffset $blur $__spread $__color;
+}
+@mixin rounded($unit) {
+  border-radius: $unit;
+}

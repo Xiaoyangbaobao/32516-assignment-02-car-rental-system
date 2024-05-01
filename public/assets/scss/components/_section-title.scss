@@ -1,0 +1,82 @@
+@use '../utils' as *;
+
+/*----------------------------------------*/
+/*  09. Section title css start 
+/*----------------------------------------*/
+
+// Section title style
+.bd-sub {
+	&__title {
+		font-size: 18px;
+		font-weight: 500;
+		color: var(--clr-theme-1);
+		display: block;
+		margin-bottom: 10px;
+	}
+}
+.bd-section {
+	&__title {
+		font-size: 50px;
+		color: var(--clr-common-heading);
+		font-weight: 700;
+		line-height: 1.1;
+		@media #{$xs}{
+			font-size: 40px;
+		}
+	}
+}
+// Small-section-title
+.bd-sm {
+	&__section-title {
+		h3 {
+			font-size: 32px;
+			margin-bottom: 0;
+		}
+	}
+}
+.bd-section {
+	&__title {
+		&-icon {
+			svg {
+				margin-right: 10px;
+			}
+		}
+	}
+}
+.bd-section {
+	&__arrow {
+		color: var(--clr-common-heading);
+		font-weight: var(--bd-fw-medium);
+		a {
+			&:hover {
+				color: var(--clr-theme-1);
+			}
+		}
+		i {
+			margin-left: 7px;
+		}
+	}
+}
+
+/* CollapseMenu.css */
+.menu {
+	overflow: hidden;
+	transition: max-height 0.3s ease-out;
+	max-height: 0;  /* 初始状态下，菜单是折叠的 */
+  }
+  
+  .menu.open {
+	max-height: 500px; /* 足够大以显示所有菜单项 */
+  }
+  
+  ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+  }
+  
+  li {
+	padding: 8px 16px;
+	margin: 5px 0;
+  }
+  

@@ -1,0 +1,25 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "vendor-chunks/copy-text-to-clipboard";
+exports.ids = ["vendor-chunks/copy-text-to-clipboard"];
+exports.modules = {
+
+/***/ "(ssr)/./node_modules/copy-text-to-clipboard/index.js":
+/*!******************************************************!*\
+  !*** ./node_modules/copy-text-to-clipboard/index.js ***!
+  \******************************************************/
+/***/ ((module) => {
+
+eval("\n\nconst copyTextToClipboard = (input, {target = document.body} = {}) => {\n\tconst element = document.createElement('textarea');\n\tconst previouslyFocusedElement = document.activeElement;\n\n\telement.value = input;\n\n\t// Prevent keyboard from showing on mobile\n\telement.setAttribute('readonly', '');\n\n\telement.style.contain = 'strict';\n\telement.style.position = 'absolute';\n\telement.style.left = '-9999px';\n\telement.style.fontSize = '12pt'; // Prevent zooming on iOS\n\n\tconst selection = document.getSelection();\n\tlet originalRange = false;\n\tif (selection.rangeCount > 0) {\n\t\toriginalRange = selection.getRangeAt(0);\n\t}\n\n\ttarget.append(element);\n\telement.select();\n\n\t// Explicit selection workaround for iOS\n\telement.selectionStart = 0;\n\telement.selectionEnd = input.length;\n\n\tlet isSuccess = false;\n\ttry {\n\t\tisSuccess = document.execCommand('copy');\n\t} catch (_) {}\n\n\telement.remove();\n\n\tif (originalRange) {\n\t\tselection.removeAllRanges();\n\t\tselection.addRange(originalRange);\n\t}\n\n\t// Get the focus back on the previously focused element, if any\n\tif (previouslyFocusedElement) {\n\t\tpreviouslyFocusedElement.focus();\n\t}\n\n\treturn isSuccess;\n};\n\nmodule.exports = copyTextToClipboard;\n// TODO: Remove this for the next major release\nmodule.exports[\"default\"] = copyTextToClipboard;\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvY29weS10ZXh0LXRvLWNsaXBib2FyZC9pbmRleC5qcyIsIm1hcHBpbmdzIjoiQUFBYTs7QUFFYixxQ0FBcUMsd0JBQXdCLElBQUk7QUFDakU7QUFDQTs7QUFFQTs7QUFFQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTtBQUNBLGtDQUFrQzs7QUFFbEM7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTs7QUFFQTtBQUNBO0FBQ0E7QUFDQSxHQUFHOztBQUVIOztBQUVBO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0E7O0FBRUE7QUFDQTtBQUNBLHlCQUFzQiIsInNvdXJjZXMiOlsid2VicGFjazovL3hpYW95YW5nLW1hbGwvLi9ub2RlX21vZHVsZXMvY29weS10ZXh0LXRvLWNsaXBib2FyZC9pbmRleC5qcz9hMzE5Il0sInNvdXJjZXNDb250ZW50IjpbIid1c2Ugc3RyaWN0JztcblxuY29uc3QgY29weVRleHRUb0NsaXBib2FyZCA9IChpbnB1dCwge3RhcmdldCA9IGRvY3VtZW50LmJvZHl9ID0ge30pID0+IHtcblx0Y29uc3QgZWxlbWVudCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3RleHRhcmVhJyk7XG5cdGNvbnN0IHByZXZpb3VzbHlGb2N1c2VkRWxlbWVudCA9IGRvY3VtZW50LmFjdGl2ZUVsZW1lbnQ7XG5cblx0ZWxlbWVudC52YWx1ZSA9IGlucHV0O1xuXG5cdC8vIFByZXZlbnQga2V5Ym9hcmQgZnJvbSBzaG93aW5nIG9uIG1vYmlsZVxuXHRlbGVtZW50LnNldEF0dHJpYnV0ZSgncmVhZG9ubHknLCAnJyk7XG5cblx0ZWxlbWVudC5zdHlsZS5jb250YWluID0gJ3N0cmljdCc7XG5cdGVsZW1lbnQuc3R5bGUucG9zaXRpb24gPSAnYWJzb2x1dGUnO1xuXHRlbGVtZW50LnN0eWxlLmxlZnQgPSAnLTk5OTlweCc7XG5cdGVsZW1lbnQuc3R5bGUuZm9udFNpemUgPSAnMTJwdCc7IC8vIFByZXZlbnQgem9vbWluZyBvbiBpT1NcblxuXHRjb25zdCBzZWxlY3Rpb24gPSBkb2N1bWVudC5nZXRTZWxlY3Rpb24oKTtcblx0bGV0IG9yaWdpbmFsUmFuZ2UgPSBmYWxzZTtcblx0aWYgKHNlbGVjdGlvbi5yYW5nZUNvdW50ID4gMCkge1xuXHRcdG9yaWdpbmFsUmFuZ2UgPSBzZWxlY3Rpb24uZ2V0UmFuZ2VBdCgwKTtcblx0fVxuXG5cdHRhcmdldC5hcHBlbmQoZWxlbWVudCk7XG5cdGVsZW1lbnQuc2VsZWN0KCk7XG5cblx0Ly8gRXhwbGljaXQgc2VsZWN0aW9uIHdvcmthcm91bmQgZm9yIGlPU1xuXHRlbGVtZW50LnNlbGVjdGlvblN0YXJ0ID0gMDtcblx0ZWxlbWVudC5zZWxlY3Rpb25FbmQgPSBpbnB1dC5sZW5ndGg7XG5cblx0bGV0IGlzU3VjY2VzcyA9IGZhbHNlO1xuXHR0cnkge1xuXHRcdGlzU3VjY2VzcyA9IGRvY3VtZW50LmV4ZWNDb21tYW5kKCdjb3B5Jyk7XG5cdH0gY2F0Y2ggKF8pIHt9XG5cblx0ZWxlbWVudC5yZW1vdmUoKTtcblxuXHRpZiAob3JpZ2luYWxSYW5nZSkge1xuXHRcdHNlbGVjdGlvbi5yZW1vdmVBbGxSYW5nZXMoKTtcblx0XHRzZWxlY3Rpb24uYWRkUmFuZ2Uob3JpZ2luYWxSYW5nZSk7XG5cdH1cblxuXHQvLyBHZXQgdGhlIGZvY3VzIGJhY2sgb24gdGhlIHByZXZpb3VzbHkgZm9jdXNlZCBlbGVtZW50LCBpZiBhbnlcblx0aWYgKHByZXZpb3VzbHlGb2N1c2VkRWxlbWVudCkge1xuXHRcdHByZXZpb3VzbHlGb2N1c2VkRWxlbWVudC5mb2N1cygpO1xuXHR9XG5cblx0cmV0dXJuIGlzU3VjY2Vzcztcbn07XG5cbm1vZHVsZS5leHBvcnRzID0gY29weVRleHRUb0NsaXBib2FyZDtcbi8vIFRPRE86IFJlbW92ZSB0aGlzIGZvciB0aGUgbmV4dCBtYWpvciByZWxlYXNlXG5tb2R1bGUuZXhwb3J0cy5kZWZhdWx0ID0gY29weVRleHRUb0NsaXBib2FyZDtcbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/copy-text-to-clipboard/index.js\n");
+
+/***/ })
+
+};
+;
