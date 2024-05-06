@@ -19,7 +19,7 @@ const ShopSection = () => {
     cars
   } = useGlobalContext();
   const [searchValue, setSearchValue] = useState("");
-  const [options, setOptions] = useState<{label: JSX.Element, options: { value: string, label: JSX.Element}[]}[]>([]);
+  const [options, setOptions] = useState<{label: React.JSX.Element, options: { value: string, label: React.JSX.Element}[]}[]>([]);
   
   const getCars = useSelector((state: RootState) => state.cart.cars);
   const dispatch = useDispatch();
@@ -162,7 +162,8 @@ const ShopSection = () => {
                         setCars(result);
                         dispatch(hisotry_search({hisotrySearch: value}));
                       }}
-                      filterOption={(inputValue, option) => {
+                      filterOption={(inputValue, option: any) => {
+                        console.log(option.value.toUpperCase().includes(inputValue.toUpperCase()),option);
                         return option?.value?.toUpperCase().includes(inputValue.toUpperCase());
                         // return option!.options.map(item => item.value).indexOf(inputValue.toUpperCase()) !== -1;
                       }

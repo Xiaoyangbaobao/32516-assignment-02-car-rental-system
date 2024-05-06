@@ -13,12 +13,6 @@ import SidebarWishlist from "./SidebarWishlist";
 
 const HeaderOne = () => {
 
-  const { setShowSidebar, setOpenCart, user,setOpenWishlist } = useGlobalContext();
-  const safeSetShowSidebar = setShowSidebar || (() => {});
-  const [searchOpen, setSearchOpen] = useState(false);
-  const productQuantity = useUniqueProductCount();
-  const wishlistQuantity = useUniqueWishlstCount();
-
   useEffect(() => {
     window.addEventListener("scroll", sticky);
     return () => {
