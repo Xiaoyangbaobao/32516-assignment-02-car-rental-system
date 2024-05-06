@@ -163,7 +163,6 @@ const ShopSection = () => {
                         dispatch(hisotry_search({hisotrySearch: value}));
                       }}
                       filterOption={(inputValue, option: any) => {
-                        console.log(option.value.toUpperCase().includes(inputValue.toUpperCase()),option);
                         return option?.value?.toUpperCase().includes(inputValue.toUpperCase());
                         // return option!.options.map(item => item.value).indexOf(inputValue.toUpperCase()) !== -1;
                       }
