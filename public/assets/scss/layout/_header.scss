@@ -1159,15 +1159,6 @@
 	&__logo-2 {
 		position: relative;
 		z-index: 55;
-		margin-right: 180px;
-
-		@media #{$xl} {
-			margin-right: 125px;
-		}
-
-		@media #{$lg} {
-			margin-right: 125px;
-		}
 
 		@media #{$xs,$sm,$md} {
 			margin-right: 0;

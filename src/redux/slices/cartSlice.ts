@@ -9,17 +9,23 @@ import CarsJSONData from '../../../cars.json';
 interface CartState {
   cartProducts: any[];
   cars: any[];
+  historySearches: any[];
 }
 
 const initialState: CartState = {
   cartProducts: [],
   cars: CarsJSONData.cars,
+  historySearches: [],
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    hisotry_search: (state, { payload }:PayloadAction<any>) => {
+      state.historySearches.push(payload.hisotrySearch)
+      state.historySearches.filter((item, index, self) => self.indexOf(item) !== index);
+    },
     cart_product: (state, { payload }: PayloadAction<any>) => {
       const productIndex = state.cartProducts.findIndex(
         (item) => item.id === payload.id
@@ -129,6 +135,7 @@ export const cartSlice = createSlice({
 });
 
 export const {
+  hisotry_search,
   cart_product,
   remove_cart_product,
   clear_cart,

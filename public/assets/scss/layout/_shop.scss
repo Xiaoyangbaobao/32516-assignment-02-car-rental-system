@@ -439,7 +439,6 @@ input {
             top: 0;
             width: 100%;
             @include margin-padding(null, 15px);
-            z-index: 1;
             @extend %display-flex-center-between;
             font-size: $__font__size__14;
             @extend %animation-effect;
@@ -498,7 +497,6 @@ input {
             .author-img {
                 position: $__absolute;
                 top: -35px;
-                z-index: 2;
                 right: 15px;
                 border-radius: 50px;
                 img {
