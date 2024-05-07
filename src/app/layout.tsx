@@ -16,8 +16,8 @@ export default function RootLayout({ children }: childrenType) {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>Xiaoyang Mall</title>
-          <link rel="icon" href="/favicon.png" />
+          <title>XICAR</title>
+          <link rel="icon" href="/favicon.ico" />
           <link
             href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;900&display=swap"
             rel="stylesheet"
