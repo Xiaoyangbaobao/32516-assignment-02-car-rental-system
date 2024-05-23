@@ -223,6 +223,22 @@
                 "id": "14",
                 "location": "German",
                 "description": "The BMW X5 is a luxury midsize SUV that offers a blend of elegance, performance, and versatility. As one of BMW's flagship SUVs, the X5 combines a sleek and stylish design with advanced technology and a comfortable interior."
+          },
+          {
+                "category": "SUV",
+                "availability": true,
+                "brand": "Mercedes-Benz",
+                "model": "C-Class",
+                "model_year": 2022,
+                "mileage": 10000,
+                "fuel_type": "Gasoline",
+                "seats": 5,
+                "price_per_day": 200,
+                "quantity": 2,
+                "power": "Power",
+                "id": "15",
+                "location": "United States",
+                "description":"The Mercedes-Benz C-Class is a luxury midsize SUV that offers a combination of elegance, performance, and advanced technology. It is part of the prestigious Mercedes-Benz lineup and embodies the brand's commitment to craftsmanship and innovation."
           }
     ]
 }
