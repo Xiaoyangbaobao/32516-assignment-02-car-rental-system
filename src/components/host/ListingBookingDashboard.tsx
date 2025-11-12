@@ -37,6 +37,8 @@ import {
 type ListingBookingDashboardProps = {
   listing: HostedListing;
   initialRequests: BookingRequest[];
+  returnHref?: string;
+  returnLabel?: string;
 };
 
 const statusTag = (status: BookingStatus) => {
@@ -64,6 +66,8 @@ const statusIcon = (status: BookingStatus) => {
 const ListingBookingDashboard = ({
   listing,
   initialRequests,
+  returnHref = '/host/listings',
+  returnLabel = 'Back to hosted listings',
 }: ListingBookingDashboardProps) => {
   const [requests, setRequests] = useState<BookingRequest[]>(() =>
     [...initialRequests].sort(
@@ -125,9 +129,9 @@ const ListingBookingDashboard = ({
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
       {contextHolder}
-      <Link href="/host/listings">
+      <Link href={returnHref}>
         <Button type="link" icon={<ArrowLeftOutlined />}>
-          Back to hosted listings
+          {returnLabel}
         </Button>
       </Link>
 

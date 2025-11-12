@@ -7,11 +7,21 @@ import { formatOnlineDuration } from '@/utils/bookingMetrics';
 
 const { Text } = Typography;
 
-const HostedListingsOverview = () => {
+type HostedListingsOverviewProps = {
+  hrefBase?: string;
+  cardTitle?: string;
+  ctaLabel?: string;
+};
+
+const HostedListingsOverview = ({
+  hrefBase = '/host/listings',
+  cardTitle = 'My Hosted Listings',
+  ctaLabel = 'Manage booking requests',
+}: HostedListingsOverviewProps) => {
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
       <Card
-        title="My Hosted Listings"
+        title={cardTitle}
         bordered={false}
         style={{ borderRadius: 18, boxShadow: '0 18px 40px rgba(15, 23, 42, 0.08)' }}
       >
@@ -22,8 +32,8 @@ const HostedListingsOverview = () => {
             <List.Item
               key={listing.id}
               actions={[
-                <Link key="manage" href={`/host/listings/${listing.id}`} passHref>
-                  <Button type="primary">Manage booking requests</Button>
+                <Link key="manage" href={`${hrefBase}/${listing.id}`} passHref>
+                  <Button type="primary">{ctaLabel}</Button>
                 </Link>,
               ]}
               extra={
