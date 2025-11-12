@@ -3,6 +3,12 @@ import type { HostedListing } from '@/data/hostedListings';
 
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
+const toMidnight = (date: Date) => {
+  const normalized = new Date(date);
+  normalized.setHours(0, 0, 0, 0);
+  return normalized;
+};
+
 export const calculateStayLength = (checkIn: string, checkOut: string): number => {
   const start = new Date(checkIn);
   const end = new Date(checkOut);
@@ -37,6 +43,63 @@ export const calculateProfitThisYear = (
     (acc, booking) => acc + booking.totalPrice,
     0
   );
+
+export type DailyRevenuePoint = {
+  daysAgo: number;
+  total: number;
+  date: string;
+};
+
+export const calculateDailyRevenueSeries = (
+  bookings: BookingRequest[],
+  days = 30,
+  referenceDate = new Date()
+): DailyRevenuePoint[] => {
+  const reference = toMidnight(referenceDate);
+  const totals = new Map<number, number>();
+
+  for (let i = 0; i <= days; i += 1) {
+    totals.set(i, 0);
+  }
+
+  bookings
+    .filter((booking) => booking.status === 'accepted')
+    .forEach((booking) => {
+      const stayLength = calculateStayLength(booking.checkIn, booking.checkOut);
+      if (stayLength <= 0) {
+        return;
+      }
+
+      const nightlyRate = booking.totalPrice / stayLength;
+      const start = toMidnight(new Date(booking.checkIn));
+
+      for (let offset = 0; offset < stayLength; offset += 1) {
+        const currentDay = new Date(start);
+        currentDay.setDate(currentDay.getDate() + offset);
+
+        const diff = Math.round(
+          (reference.getTime() - currentDay.getTime()) / MS_PER_DAY
+        );
+
+        if (diff >= 0 && diff <= days) {
+          const existing = totals.get(diff) ?? 0;
+          totals.set(diff, existing + nightlyRate);
+        }
+      }
+    });
+
+  return Array.from({ length: days + 1 }, (_, idx) => {
+    const daysAgo = idx;
+    const dayDate = new Date(reference);
+    dayDate.setDate(reference.getDate() - daysAgo);
+
+    return {
+      daysAgo,
+      total: Number((totals.get(daysAgo) ?? 0).toFixed(2)),
+      date: dayDate.toISOString(),
+    };
+  });
+};
 
 export const formatOnlineDuration = (listing: HostedListing): string => {
   const listedAt = new Date(listing.listedAt);
